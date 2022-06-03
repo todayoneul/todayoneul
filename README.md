@@ -1,5 +1,5 @@
 - 👋 Hi, I’m @todayoneul
-- 👀 I’m interested in ios, Objective-C, swift React Native
+- 👀 I’m interested in ios, Objective-C, swift, ReactNative
 - 🌱 I’m currently learning Java Script
 - 💞️ I’m looking to collaborate on ...
 - 📫 How to reach me ...
