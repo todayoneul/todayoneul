@@ -10,12 +10,12 @@
 ## 👋 About Me
 실제 데이터를 바탕으로 문제를 구조화하고 **재현 가능한 실험과 정량적 검증**으로 답을 찾는 과정을 중요하게 생각합니다.
 
-- 🔭 **AI/ML Systems, Computer Vision, Data Analysis, LLM/RAG, Optimization**에 관심이 있습니다.
-- ⚡ 제한된 연산 자원에서 동작하는 **Efficient / On-device AI**를 탐구하고 있습니다.
-- 📊 통계적 해석과 Machine Learning을 함께 활용해 데이터에서 의미 있는 패턴을 찾는 것을 좋아합니다.
-- 🧠 LLM을 검색·도구 사용·검증을 포함한 하나의 **AI System**으로 설계하는 데 관심이 있습니다.
+-  **AI/ML Systems, Computer Vision, Data Analysis, LLM/RAG, Optimization**에 관심이 있습니다.
+-  제한된 연산 자원에서 동작하는 **Efficient / On-device AI**를 탐구하고 있습니다.
+-  통계적 해석과 Machine Learning을 함께 활용해 데이터에서 의미 있는 패턴을 찾는 것을 좋아합니다.
+-  LLM을 검색·도구 사용·검증을 포함한 하나의 **AI System**으로 설계하는 데 관심이 있습니다.
 
-## 🚀 Featured Projects
+## Featured Projects
 | Project | What I built | Highlight |
 |---|---|---|
 | 🚦 **[Edge-Sign](https://github.com/todayoneul/edge_sign)** | 교통표지판·신호등 Detection → Tracking → Recognition → Q&A | **11.7 MB INT8 · 56.3 FPS CPU · WebGPU demo** |
@@ -46,15 +46,15 @@ HCX-005는 복합 질의 orchestration을 담당하고, 수치 계산과 근거 
 - **Data Analysis & Machine Learning** — Statistical Modeling · Interaction Effects · Time Series · Predictive Modeling
 - **Optimization** — CP-SAT · Metaheuristics · QUBO · QAOA · Classical-Quantum Hybrid
 
-## 🏆 Activities
+## Activities
 **Quantum Reframing Challenge 2026 본선** · **2026 미래에셋 AI Festival** · **Kakao PlayMCP** · **LG Aimers 8기 Offline Hackathon**
 
 프로젝트마다 단순 구현보다 **문제 정의, 실험 설계, 검증 기준, 재현성**을 함께 고민하는 편입니다.
 
-## 🌱 Current Focus
+## Current Focus
 효율적인 AI inference, grounded LLM systems, 금융·공공 데이터 기반 의사결정, 최적화 문제의 실용적 적용을 공부하고 있습니다.
 
-## 🛠 Tech
+## Tech
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
 ![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white)
