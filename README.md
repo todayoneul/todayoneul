@@ -1,66 +1,55 @@
-<div align="center">
+# 이규한 (Lee Gyuhan)
 
-# 이규한 | Lee Gyuhan
-**AI/ML · Computer Vision · Data Analysis · LLM Systems · Optimization**
+서울과학기술대학교 컴퓨터공학과에서 컴퓨터비전과 기계학습을 공부하고 있습니다. 배운 내용을 직접 구현해 결과를 확인하고, 기대와 다른 결과가 나오면 데이터와 처리 단계를 나누어 원인을 찾는 방식으로 프로젝트를 진행합니다. 요즘은 카메라 영상과 언어 지시가 로봇의 행동으로 이어지는 과정에 관심을 두고 있습니다.
 
-모델 하나의 성능보다 **문제 정의 → 데이터 → 모델링 → 검증 → 최적화 → 배포**까지 이어지는 전체 AI 시스템에 관심이 있습니다.
+## 프로젝트
 
-</div>
+### [Edge-Sign](https://github.com/todayoneul/edge_sign)
 
-## 👋 About Me
-실제 데이터를 바탕으로 문제를 구조화하고 **재현 가능한 실험과 정량적 검증**으로 답을 찾는 과정을 중요하게 생각합니다.
+도로 주행 영상에서 신호등과 교통표지판을 검출하고 추적한 뒤 종류와 점등 상태를 분류하는 파이프라인입니다. 추론은 브라우저 안에서 ONNX Runtime Web으로 실행하며, [웹 데모](https://huggingface.co/spaces/gyann/edge-sign)로 공개했습니다.
 
--  **AI/ML Systems, Computer Vision, Data Analysis, LLM/RAG, Optimization**에 관심이 있습니다.
--  제한된 연산 자원에서 동작하는 **Efficient / On-device AI**를 탐구하고 있습니다.
--  통계적 해석과 Machine Learning을 함께 활용해 데이터에서 의미 있는 패턴을 찾는 것을 좋아합니다.
--  LLM을 검색·도구 사용·검증을 포함한 하나의 **AI System**으로 설계하는 데 관심이 있습니다.
+- 주행 영상 8개 시퀀스를 시퀀스 단위로 학습·검증·시험에 나누어 비슷한 프레임이 양쪽에 섞이지 않게 했습니다.
+- 검출기 전체를 INT8로 양자화하면 검출이 하나도 나오지 않았습니다. 검출 헤드를 FP32로 남긴 YOLOv8s는 파일 크기가 44.75MB에서 18.00MB로 줄었고 mAP@0.5:0.95는 FP32의 98.7%였습니다.
+- INT8의 속도 효과는 실행 환경에 따라 달랐습니다. Windows의 네이티브 CPU와 WebAssembly에서는 최대 2.3배 빨라졌지만 WebGPU에서는 FP32보다 49–89배 느렸습니다.
 
-## Featured Projects
-| Project | What I built | Highlight |
-|---|---|---|
-| 🚦 **[Edge-Sign](https://github.com/todayoneul/edge_sign)** | 교통표지판·신호등 Detection → Tracking → Recognition → Q&A | **11.7 MB INT8 · 56.3 FPS CPU · WebGPU demo** |
-| ⚛️ **[QRC2026](https://github.com/todayoneul/QRC2026)** | KG 기반 기업·기술 조합 최적화와 Classical–Quantum hybrid validation | **CP-SAT · SA · QAOA · Common Validator** |
-| 🏦 **[HCX05 Disclosure Agent](https://github.com/todayoneul/HCX05-disclosure-agent)** | 한국어 기업 공시 기반 금융 특화 RAG / Tool-using Agent | **HCX-005 · 4,204 filings · 9 deterministic tools** |
-| 🚲 **[따릉이 수요 분석](https://github.com/todayoneul/ddarungyee)** | 서울 공공자전거 수요의 기상·상권 Interaction 분석 및 예측 모델링 | **Statistical Analysis · ML · Non-linear Modeling** |
+### [UAV Vision-Language-Action](https://github.com/todayoneul/failure-aware-uav-vla)
 
-### 🚦 Edge-Sign
-실시간 도로 인식 파이프라인을 직접 구성하고, 양자화가 정확도와 실제 runtime에 미치는 영향을 비교했습니다.  
-단순 모델 압축이 아니라 **ONNX / WebGPU / CPU 배포 환경까지 포함한 end-to-end 최적화**를 목표로 했습니다.
+문장으로 지시한 물체를 찾아 접근하거나 착륙하는 드론 VLA 모델을 Project AirSim 시뮬레이터에서 학습하고 평가한 개인 프로젝트입니다. 실제 기체 비행은 하지 않았습니다.
 
-### ⚛️ QRC2026
-기업·기술 Knowledge Graph를 constrained optimization 문제로 정의하고 **CP-SAT, SA, QAOA**를 비교했습니다.  
-후보해를 원 문제 기준으로 다시 검증하는 Common Validator와 **Quantum No-call Router**를 설계했습니다.
+- 공개 모델 AeroVLA를 시뮬레이터에 연결해 보니, 좌표로 계산해 넣은 방향 문장을 빼면 13회 모두 첫 판단에서 착륙을 선택했습니다.
+- OpenVLA-OFT 방식과 LoRA로 다시 학습한 모델은 봉인한 시험 48개 중 47개를 통과했습니다.
+- 입력 영상에 가우시안 블러를 강하게 줄수록 통과 수가 46, 40, 24, 8개로 줄었습니다.
+- 다음 단계로 CARLA에서 자연어로 지정한 차량을 따라가는 과제를 준비하고 있습니다.
 
-### 🏦 HCX05 Disclosure Agent
-한국어 기업 공시 4,204건을 기반으로 재무 수치·공시 이벤트·정정 이력·사업 내용을 조회하는 **금융 특화 RAG Agent**를 구축했습니다.  
-HCX-005는 복합 질의 orchestration을 담당하고, 수치 계산과 근거 검증은 **deterministic tools + Python Decimal + correction lineage**로 분리했습니다.
+### [QRC2026](https://github.com/todayoneul/QRC2026)
 
-### 🚲 따릉이 데이터 분석
-서울시 공공자전거 데이터를 기상·상권·주말·학사 일정 데이터와 결합해 수요 패턴을 분석했습니다.  
-상권별 Interaction Effect, 비선형 관계, 시계열 자기상관을 고려하며 **통계적 해석과 ML 기반 수요 예측**을 함께 진행했습니다.
+Quantum Reframing Challenge 2026 본선에 5인 팀으로 참가한 프로젝트입니다. 대회에서 제공한 지식 그래프에서 기업과 기술의 조합을 고르는 최적화 문제를 CP-SAT, Simulated Annealing, QAOA로 풀고 비교했습니다.
 
-## 🔍 Research & Engineering Interests
-- **Efficient AI / On-device Inference** — Quantization · ONNX · Runtime Optimization · Edge Deployment
-- **LLM Systems & Grounded RAG** — Retrieval · Tool Use · Correction Tracking · Verification · FastAPI
-- **Computer Vision** — Detection · Tracking · Recognition · Camera Geometry
-- **Data Analysis & Machine Learning** — Statistical Modeling · Interaction Effects · Time Series · Predictive Modeling
-- **Optimization** — CP-SAT · Metaheuristics · QUBO · QAOA · Classical-Quantum Hybrid
+- 저는 풀이 방법마다 다른 형식의 답을 원래 문제의 제약조건과 목적함수로 다시 계산하는 공통 검증기와, 양자 계산을 호출할지 판정하는 라우터를 맡았습니다.
+- 대회 문제(결정 변수 67개)는 CP-SAT이 최적해임을 증명해 라우터가 양자 계산을 호출하지 않았습니다.
+- QAOA는 시뮬레이터에서만 실행했고 실제 양자 하드웨어는 사용하지 않았습니다.
 
-## Activities
-**Quantum Reframing Challenge 2026 본선** · **2026 미래에셋 AI Festival** · **Kakao PlayMCP** · **LG Aimers 8기 Offline Hackathon**
+### [HCX05 Disclosure Agent](https://github.com/todayoneul/HCX05-disclosure-agent)
 
-프로젝트마다 단순 구현보다 **문제 정의, 실험 설계, 검증 기준, 재현성**을 함께 고민하는 편입니다.
+미래에셋증권 AI 페스티벌에서 만든 한국어 기업 공시 질의응답 에이전트입니다. 재무 수치 조회나 비율 계산 같은 정형 질의는 모델을 거치지 않고 도구가 직접 처리하고, 복합 질의만 HyperCLOVA X(HCX-005)가 도구 호출을 조율합니다. 수치 계산에는 Python Decimal을 사용하며, 답변의 수치와 인용이 수집한 근거와 맞지 않으면 답을 내지 않습니다.
 
-## Current Focus
-효율적인 AI inference, grounded LLM systems, 금융·공공 데이터 기반 의사결정, 최적화 문제의 실용적 적용을 공부하고 있습니다.
+### [따릉이 수요 분석](https://github.com/todayoneul/ddarungyee)
 
-## Tech
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
-![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white)
-![ONNX](https://img.shields.io/badge/ONNX-005CED?style=flat-square&logo=onnx&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
-![Qiskit](https://img.shields.io/badge/Qiskit-6929C4?style=flat-square)
+서울시 공공자전거 대여 기록을 기상, 상권, 주말 여부와 결합해 수요가 달라지는 조건을 분석한 데이터분석 수업 프로젝트입니다. 상권에 따라 주말 효과의 방향이 달라지는지 검정했고, 스플라인과 GAM으로 기온과 수요의 비선형 관계를 살펴봤습니다.
 
-> 대표 프로젝트의 구현·실험·재현 방법은 아래 **Pinned repositories**에서 확인할 수 있습니다.
+### 컴퓨터비전 수업 프로젝트
+
+- [카메라 캘리브레이션](https://github.com/todayoneul/my_camera_calibrator): 직접 촬영한 체스보드 영상으로 카메라 특성을 구하고 왜곡을 보정했습니다.
+- [AR 카메라 자세 추정과 3D 렌더링](https://github.com/todayoneul/AR_Camera_Pose_Estimation_and_3D_Rendering): 체스보드를 기준으로 카메라의 위치와 방향을 추정해 영상 위에 OBJ 모델을 그렸습니다.
+- [파노라마 스티칭](https://github.com/todayoneul/Image_Stitching_And_Panoramic_Blending): 세 장 이상의 사진을 호모그래피 추정과 워핑, 블렌딩으로 이어 붙였습니다.
+
+## 참가 이력
+
+- Quantum Reframing Challenge 2026 본선
+- LG Aimers 8기 오프라인 해커톤 본선
+- 2026 미래에셋증권 AI 페스티벌
+- Kakao PlayMCP ([youth-policy-mcp](https://github.com/todayoneul/youth-policy-mcp))
+
+## 사용 기술
+
+Python, PyTorch, OpenCV, ONNX Runtime, FastAPI, Docker, Git
